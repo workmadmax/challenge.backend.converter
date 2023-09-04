@@ -37,11 +37,11 @@ public class DialogBox {
 			switch (options) {
 				case "Convert currency":
 					String inputValue = JOptionPane.showInputDialog("Enter the value to convert");
-					if (inputValue != null) {
+					if (inputValidator(inputValue)) {
 						double value = Double.parseDouble(inputValue);
 						coins.currencyConvert(value);
 						int continueConvert = JOptionPane.showConfirmDialog(null, "Do you want to continue converting?",
-								"Continue", JOptionPane.YES_NO_OPTION);
+								"Continue", JOptionPane.YES_NO_CANCEL_OPTION);
 						if (continueConvert == JOptionPane.NO_OPTION) {
 							JOptionPane.showMessageDialog(null, "Thanks for using our converter finish");
 							System.exit(0);
@@ -58,4 +58,14 @@ public class DialogBox {
 			}
 		}
 	}
-}
+
+
+	private boolean inputValidator(String inputValue) {
+		try {
+			Double.parseDouble(inputValue);
+			return true;
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Invalid value");
+			return false;
+		}
+	}}
