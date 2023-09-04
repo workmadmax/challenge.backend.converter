@@ -59,10 +59,19 @@ public class DialogBox {
 		}
 	}
 
+	private boolean rangeNumberValidator(double value) {
+		double INT_MAX_VALUE = 2147483647;
+		double INT_MIN_VALUE = -2147483648;
+		if (value > INT_MAX_VALUE || value < INT_MIN_VALUE) {
+			JOptionPane.showMessageDialog(null, "Invalid value");
+			return false;
+		}
+		return true;
+	}
 
 	private boolean inputValidator(String inputValue) {
 		try {
-			Double.parseDouble(inputValue);
+			rangeNumberValidator(Double.parseDouble(inputValue));
 			return true;
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Invalid value");
