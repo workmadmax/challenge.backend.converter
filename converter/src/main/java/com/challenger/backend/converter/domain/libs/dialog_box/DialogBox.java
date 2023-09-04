@@ -3,10 +3,14 @@ package com.challenger.backend.converter.domain.libs.dialog_box;
 import javax.swing.JOptionPane;
 
 import com.challenger.backend.converter.domain.currency_convert.ToConvert;
+import com.challenger.backend.converter.domain.temperature_convert.Conversion;
 
 public class DialogBox {
 
 	private ToConvert coins = new ToConvert();
+	private Conversion temperature = new Conversion();
+
+	
 
 	public DialogBox() {
 		super();
@@ -31,7 +35,7 @@ public class DialogBox {
 			String options = JOptionPane.showInputDialog(null, "Choose an option", "Menu",
 					JOptionPane.PLAIN_MESSAGE, null, new Object[] {
 							"Convert currency",
-							"Exit"
+							"temperature"
 					}, "Choice").toString();
 
 			switch (options) {
@@ -52,9 +56,22 @@ public class DialogBox {
 						}
 					}
 					break;
-				case "Exit":
-					System.exit(0);
-					break;
+				case "temperature":
+					inputValue = JOptionPane.showInputDialog("Enter the value to convert");
+					if (inputValidator(inputValue)) {
+						double value = Double.parseDouble(inputValue);
+						temperature.temperatureConvert(value);
+						int continueConvert = JOptionPane.showConfirmDialog(null, "Do you want to continue converting?",
+								"Continue", JOptionPane.YES_NO_CANCEL_OPTION);
+						if (continueConvert == JOptionPane.NO_OPTION) {
+							JOptionPane.showMessageDialog(null, "Thanks for using our converter finish");
+							System.exit(0);
+						}
+						if (continueConvert == JOptionPane.CANCEL_OPTION) {
+							JOptionPane.showMessageDialog(null, "Thanks for using our converter compleate");
+							System.exit(0);
+						}
+					}
 			}
 		}
 	}
