@@ -24,7 +24,7 @@ cd converter
 
 
 ```sh
-$> javac -jar converter.jar
+$> java -jar converter.jar
 ```
 
 ```sh

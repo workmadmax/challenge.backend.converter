@@ -30,13 +30,20 @@ public class DialogBox {
 
 	public void execute() {
 
+		String options = "";
+
 		while (true) {
 
-			String options = JOptionPane.showInputDialog(null, "Choose an option", "Menu",
+			try {
+				options = JOptionPane.showInputDialog(null, "Choose an option", "Menu",
 					JOptionPane.PLAIN_MESSAGE, null, new Object[] {
 							"Convert currency",
 							"temperature"
 					}, "Choice").toString();
+			} catch (NullPointerException e) {
+				JOptionPane.showMessageDialog(null, "Thanks for using our converter finish");
+				System.exit(0);
+			}
 
 			switch (options) {
 				case "Convert currency":
